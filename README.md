@@ -72,7 +72,7 @@
 ---
 
 # 3. Контекстная диаграмма
-<img width="314" alt="контекстная диаграмма" src="[https://github.com/olgmina/SWEngineering-technics.github.io/assets/65451923/2d64e58e-05fe-4f15-b13c-bd9cd36374e2](https://github.com/vadimgoudin36/GovvrnServiceDesk-/blob/main/diagram1.png)">
+<img width="314" alt="контекстная диаграмма" src="https://github.com/vadimgoudin36/GovvrnServiceDesk-/blob/main/diagram1.png">
 
 ---
 
