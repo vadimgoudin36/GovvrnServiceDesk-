@@ -72,7 +72,7 @@
 ---
 
 # 3. Контекстная диаграмма
-<img width="314" alt="контекстная диаграмма" src="https://github.com/vadimgoudin36/GovvrnServiceDesk-/blob/main/diagram1.png">
+<img width="550" alt="контекстная диаграмма" src="https://github.com/vadimgoudin36/GovvrnServiceDesk-/blob/main/diagram1.png">
 
 ---
 
