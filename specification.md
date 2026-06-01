@@ -129,6 +129,10 @@
 
 ## 3.1 Функциональные требования
 
+### Диаграмма вариантов использования USE-CASE
+<img width="550" alt="Диаграмма Use-case" src="https://github.com/vadimgoudin36/GovvrnServiceDesk-/blob/main/diagram2.png">
+
+
 ### Авторизация
 
 **FR-01**
