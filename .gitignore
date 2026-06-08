@@ -17,3 +17,14 @@ web-data/
 *.iml
 .DS_Store
 Thumbs.db
+
+# Saved web prototype; this repository contains the Swing desktop version
+src/main/java/ru/gov/servicedesk/WebApplication.java
+src/main/java/ru/gov/servicedesk/config/
+src/main/java/ru/gov/servicedesk/controller/
+src/main/java/ru/gov/servicedesk/repository/
+src/main/java/ru/gov/servicedesk/service/AttachmentStorageService.java
+src/main/java/ru/gov/servicedesk/service/WebCurrentUserService.java
+src/main/resources/application.properties
+src/main/resources/static/
+src/main/resources/templates/
