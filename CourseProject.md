@@ -76,7 +76,7 @@
 
 Основные сценарии использования программного средства представлены на рисунке 1.
 
-<img width="550" alt="Диаграмма Use-case" src="https://github.com/vadimgoudin36/GovvrnServiceDesk-/blob/main/diagram2.png">
+<img width="550" alt="Диаграмма Use-case" src="https://github.com/vadimgoudin36/GovvrnServiceDesk-/blob/main/images/diagram2.png">
 
 Рисунок 1 – Диаграмма вариантов использования (Use Case Diagram).
 
@@ -130,19 +130,19 @@
 
 Для сотрудника организации предусмотрен интерфейс создания и просмотра заявок. Пользователь имеет возможность сформировать новое обращение, указать тему и описание проблемы, выбрать категорию заявки и отслеживать текущее состояние обращения. Также сотрудник может просматривать историю собственных заявок и обмениваться комментариями со специалистами технической поддержки.
 
-<img width="550" alt="контекстная диаграмма" src="https://github.com/vadimgoudin36/GovvrnServiceDesk-/blob/main/UserInterface.png">
+<img width="550" alt="контекстная диаграмма" src="https://github.com/vadimgoudin36/GovvrnServiceDesk-/blob/main/images/UserInterface.png">
 
 Рисунок 2 – Интерфейс сотрудника. Форма создания заявки и список обращений пользователя.
 
 Интерфейс IT-специалиста предназначен для обработки поступающих обращений. Специалист может просматривать список назначенных заявок, изменять их статус, оставлять комментарии, фиксировать результаты выполненных работ и контролировать сроки обработки обращений. Для удобства работы предусматривается отображение информации о приоритете заявки и её текущем состоянии.
 
-<img width="550" alt="контекстная диаграмма" src="https://github.com/vadimgoudin36/GovvrnServiceDesk-/blob/main/ITInterface.png">
+<img width="550" alt="контекстная диаграмма" src="https://github.com/vadimgoudin36/GovvrnServiceDesk-/blob/main/images/ITInterface.png">
 
 Рисунок 3 – Интерфейс IT-специалиста. Таблица заявок и форма изменения статуса обращения.
 
 Для администратора системы предусмотрены средства управления пользователями и настройки программного средства. Администратор может создавать учетные записи, изменять роли пользователей, просматривать журнал действий и контролировать работу системы в целом.
 
-<img width="550" alt="контекстная диаграмма" src="https://github.com/vadimgoudin36/GovvrnServiceDesk-/blob/main/AdminInterface.png">
+<img width="550" alt="контекстная диаграмма" src="https://github.com/vadimgoudin36/GovvrnServiceDesk-/blob/main/images/AdminInterface.png">
 
 Рисунок 4 – Интерфейс администратора. Форма управления пользователями и журнал действий.
 
@@ -177,7 +177,7 @@
 
 Администратор системы имеет возможность просматривать журнал действий для контроля работы пользователей и анализа истории изменения заявок. Это позволяет обеспечить прозрачность обработки обращений и контроль выполнения операций в системе.
 
-<img width="550" alt="контекстная диаграмма" src="https://github.com/vadimgoudin36/GovvrnServiceDesk-/blob/main/diagram3.png">
+<img width="550" alt="контекстная диаграмма" src="https://github.com/vadimgoudin36/GovvrnServiceDesk-/blob/main/images/diagram3.png">
 
 Рисунок 5 – Диаграмма последовательности обработки заявки в системе Service Desk.
 
@@ -211,7 +211,7 @@
 
 Класс ActionLog предназначен для ведения журнала действий пользователей. В нём фиксируются операции создания заявок, изменения статусов и другие значимые события, происходящие в системе. Использование журнала действий обеспечивает возможность контроля работы пользователей и последующего анализа событий.
 
-<img width="550" alt="контекстная диаграмма" src="https://github.com/vadimgoudin36/GovvrnServiceDesk-/blob/main/diagram4.png">
+<img width="550" alt="контекстная диаграмма" src="https://github.com/vadimgoudin36/GovvrnServiceDesk-/blob/main/images/diagram4.png">
 
 Рисунок 6 – Диаграмма классов информационной системы.
 
@@ -260,17 +260,17 @@ IT-специалист имеет возможность просматрива
 Администратор системы осуществляет управление пользователями и контроль работы программного средства. В его обязанности входит создание учетных записей, изменение ролей пользователей и просмотр журнала действий. Администратор также может контролировать состояние заявок и анализировать историю изменений в системе.
 
 
-<img width="550" alt="контекстная диаграмма" src="https://github.com/vadimgoudin36/GovvrnServiceDesk-/blob/main/Autorization.png">
+<img width="550" alt="контекстная диаграмма" src="https://github.com/vadimgoudin36/GovvrnServiceDesk-/blob/main/images/Autorization.png">
 
 Рисунок 7 – Окно авторизации. Форма входа в систему.
 
 
-<img width="550" alt="контекстная диаграмма" src="https://github.com/vadimgoudin36/GovvrnServiceDesk-/blob/main/users.png">
+<img width="550" alt="контекстная диаграмма" src="https://github.com/vadimgoudin36/GovvrnServiceDesk-/blob/main/images/users.png">
 
 Рисунок 8 – Окно редакции прав пользователя.
 
 
-<img width="550" alt="контекстная диаграмма" src="https://github.com/vadimgoudin36/GovvrnServiceDesk-/blob/main/Jornal.png">
+<img width="550" alt="контекстная диаграмма" src="https://github.com/vadimgoudin36/GovvrnServiceDesk-/blob/main/images/Jornal.png">
 
 Рисунок 9 – Журнал действий администратора. Просмотр зарегистрированных действий пользователей.
 

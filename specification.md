@@ -56,7 +56,7 @@
 Программное обеспечение представляет собой информационную систему для регистрации, обработки и контроля заявок пользователей на техническую поддержку.
 
 ### Контекстная диаграмма
-<img width="550" alt="контекстная диаграмма" src="https://github.com/vadimgoudin36/GovvrnServiceDesk-/blob/main/diagram1.png">
+<img width="550" alt="контекстная диаграмма" src="https://github.com/vadimgoudin36/GovvrnServiceDesk-/blob/main/images/diagram1.png">
 
 
 Система обеспечивает:
@@ -130,7 +130,7 @@
 ## 3.1 Функциональные требования
 
 ### Диаграмма вариантов использования USE-CASE
-<img width="550" alt="Диаграмма Use-case" src="https://github.com/vadimgoudin36/GovvrnServiceDesk-/blob/main/diagram2.png">
+<img width="550" alt="Диаграмма Use-case" src="https://github.com/vadimgoudin36/GovvrnServiceDesk-/blob/main/images/diagram2.png">
 
 
 ### Авторизация
