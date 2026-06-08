@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Заявки - ServiceDesk</title>
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+<main class="app-shell">
+    <div th:replace="~{fragments/nav :: topbar('tickets')}"></div>
+    <div th:if="${message}" class="message" th:text="${message}"></div>
+
+    <section class="panel" th:if="${currentUser.role.name() != 'EMPLOYEE'}">
+        <form method="get" action="/tickets" class="actions">
+            <div class="field" style="min-width: min(620px, 100%)">
+                <label for="q">Поиск заявок</label>
+                <input id="q" name="q" th:value="${query}" placeholder="Номер, тема, описание, категория, автор, исполнитель, статус, приоритет">
+            </div>
+            <button type="submit">Найти</button>
+            <a class="button secondary" href="/tickets">Сбросить</a>
+        </form>
+    </section>
+
+    <section class="panel">
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Тема</th>
+                <th>Категория</th>
+                <th>Статус</th>
+                <th>Приоритет</th>
+                <th>Автор</th>
+                <th>Исполнитель</th>
+                <th>Срок</th>
+                <th>Обновлена</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="ticket : ${tickets}">
+                <td th:text="${ticket.id}"></td>
+                <td><a th:href="@{/tickets/{id}(id=${ticket.id})}" th:text="${ticket.title}"></a></td>
+                <td th:text="${ticket.category}"></td>
+                <td><span class="badge" th:classappend="' status-' + ${ticket.status.name()}" th:text="${ticket.status.title}"></span></td>
+                <td><span class="badge" th:classappend="' priority-' + ${ticket.priority.name()}" th:text="${ticket.priority.title}"></span></td>
+                <td th:text="${ticket.authorName}"></td>
+                <td th:text="${ticket.executorName ?: '-'}"></td>
+                <td th:text="${ticket.dueAt ?: '-'}"></td>
+                <td th:text="${ticket.updatedAt}"></td>
+            </tr>
+            <tr th:if="${tickets.isEmpty()}">
+                <td colspan="9" class="muted">Заявок пока нет</td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+</body>
+</html>

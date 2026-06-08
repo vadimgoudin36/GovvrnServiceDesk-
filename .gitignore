@@ -1,0 +1,19 @@
+# Maven build output
+target/
+
+# Packaged desktop applications
+dist/
+dist-*/
+
+# Local application data
+*.db
+*.db-journal
+*.log
+web-data/
+
+# IDE and OS files
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db

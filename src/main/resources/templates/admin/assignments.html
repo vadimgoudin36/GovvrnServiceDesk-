@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Назначение заявок - ServiceDesk</title>
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+<main class="app-shell">
+    <div th:replace="~{fragments/nav :: topbar('assignments')}"></div>
+    <div th:if="${message}" class="message" th:text="${message}"></div>
+
+    <section class="panel">
+        <h3>Назначение заявок IT-специалистам</h3>
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Заявка</th>
+                <th>Статус</th>
+                <th>Приоритет</th>
+                <th>Автор</th>
+                <th>Текущий исполнитель</th>
+                <th>Назначить</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="ticket : ${tickets}">
+                <td th:text="${ticket.id}"></td>
+                <td>
+                    <a th:href="@{/tickets/{id}(id=${ticket.id})}" th:text="${ticket.title}"></a>
+                    <div class="muted" th:text="${ticket.category}"></div>
+                </td>
+                <td><span class="badge" th:classappend="' status-' + ${ticket.status.name()}" th:text="${ticket.status.title}"></span></td>
+                <td><span class="badge" th:classappend="' priority-' + ${ticket.priority.name()}" th:text="${ticket.priority.title}"></span></td>
+                <td th:text="${ticket.authorName}"></td>
+                <td th:text="${ticket.executorName ?: '-'}"></td>
+                <td>
+                    <form method="post" action="/admin/assignments" class="actions">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                        <input type="hidden" name="ticketId" th:value="${ticket.id}">
+                        <select name="executorId" required style="width: 230px">
+                            <option value="">IT-специалист</option>
+                            <option th:each="specialist : ${specialists}"
+                                    th:value="${specialist.id}"
+                                    th:text="${specialist.fullName}"
+                                    th:selected="${ticket.executorId != null and ticket.executorId == specialist.id}">
+                            </option>
+                        </select>
+                        <select name="priority" style="width: 140px">
+                            <option th:each="priority : ${priorities}"
+                                    th:value="${priority.name()}"
+                                    th:text="${priority.title}"
+                                    th:selected="${priority == ticket.priority}">
+                            </option>
+                        </select>
+                        <input type="date" name="dueAt" th:value="${ticket.dueAt}" style="width: 155px">
+                        <button type="submit">Назначить</button>
+                    </form>
+                </td>
+            </tr>
+            <tr th:if="${tickets.isEmpty()}">
+                <td colspan="7" class="muted">Заявок пока нет</td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+</body>
+</html>
