@@ -9,7 +9,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Предоставляет операции чтения категорий заявок.
+ */
 public class CategoryDao {
+    /**
+     * Возвращает названия всех категорий в алфавитном порядке.
+     *
+     * @return список названий категорий
+     * @throws SQLException если запрос к SQLite завершился ошибкой
+     */
     public List<String> findAllNames() throws SQLException {
         String sql = "SELECT name FROM categories ORDER BY name";
         try (Connection connection = Database.getConnection();

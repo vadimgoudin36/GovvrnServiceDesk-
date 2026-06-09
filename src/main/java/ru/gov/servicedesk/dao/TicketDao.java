@@ -14,9 +14,22 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Выполняет операции хранения, назначения и изменения статусов заявок.
+ *
+ * <p>Все значимые ручные и автоматические переходы передаются в
+ * {@link ActionLogDao}.</p>
+ */
 public class TicketDao {
     private final ActionLogDao actionLogDao = new ActionLogDao();
 
+    /**
+     * Создает заявку со статусом {@link TicketStatus#NEW}.
+     *
+     * @param ticket данные новой заявки
+     * @return идентификатор созданной заявки
+     * @throws SQLException если сохранение завершилось ошибкой
+     */
     public int create(Ticket ticket) throws SQLException {
         String sql = """
                 INSERT INTO tickets (title, description, category, status, author_id, executor_id)
@@ -44,6 +57,13 @@ public class TicketDao {
         }
     }
 
+    /**
+     * Возвращает заявки автора.
+     *
+     * @param authorId идентификатор автора
+     * @return список заявок
+     * @throws SQLException если запрос завершился ошибкой
+     */
     public List<Ticket> findByAuthor(int authorId) throws SQLException {
         String sql = baseSelect() + " WHERE t.author_id = ? ORDER BY t.updated_at DESC, t.id DESC";
         try (Connection connection = Database.getConnection();
@@ -55,6 +75,12 @@ public class TicketDao {
         }
     }
 
+    /**
+     * Возвращает все заявки.
+     *
+     * @return список заявок
+     * @throws SQLException если запрос завершился ошибкой
+     */
     public List<Ticket> findAll() throws SQLException {
         String sql = baseSelect() + " ORDER BY t.updated_at DESC, t.id DESC";
         try (Connection connection = Database.getConnection();
@@ -64,6 +90,13 @@ public class TicketDao {
         }
     }
 
+    /**
+     * Ищет заявку по идентификатору.
+     *
+     * @param ticketId идентификатор заявки
+     * @return заявка либо {@code null}
+     * @throws SQLException если запрос завершился ошибкой
+     */
     public Ticket findById(int ticketId) throws SQLException {
         String sql = baseSelect() + " WHERE t.id = ?";
         try (Connection connection = Database.getConnection();
@@ -80,6 +113,14 @@ public class TicketDao {
         assignTo(ticketId, executorId, null);
     }
 
+    /**
+     * Назначает исполнителя и переводит заявку в работу.
+     *
+     * @param ticketId идентификатор заявки
+     * @param executorId идентификатор исполнителя
+     * @param userId пользователь, выполнивший назначение
+     * @throws SQLException если обновление завершилось ошибкой
+     */
     public void assignTo(int ticketId, int executorId, Integer userId) throws SQLException {
         Ticket ticket = findById(ticketId);
         String sql = """
@@ -101,6 +142,14 @@ public class TicketDao {
         updateStatus(ticketId, status, null);
     }
 
+    /**
+     * Изменяет статус заявки вручную.
+     *
+     * @param ticketId идентификатор заявки
+     * @param status новый статус
+     * @param userId пользователь, изменивший статус
+     * @throws SQLException если обновление завершилось ошибкой
+     */
     public void updateStatus(int ticketId, TicketStatus status, Integer userId) throws SQLException {
         Ticket ticket = findById(ticketId);
         TicketStatus oldStatus = ticket == null ? null : ticket.getStatus();
@@ -121,6 +170,14 @@ public class TicketDao {
         completeWithReport(ticketId, resolutionReport, null);
     }
 
+    /**
+     * Сохраняет отчет исполнителя и отмечает заявку выполненной.
+     *
+     * @param ticketId идентификатор заявки
+     * @param resolutionReport отчет о выполнении
+     * @param userId идентификатор исполнителя
+     * @throws SQLException если обновление завершилось ошибкой
+     */
     public void completeWithReport(int ticketId, String resolutionReport, Integer userId) throws SQLException {
         Ticket ticket = findById(ticketId);
         TicketStatus oldStatus = ticket == null ? null : ticket.getStatus();
@@ -138,6 +195,14 @@ public class TicketDao {
         actionLogDao.log(ticketId, userId, "COMPLETE", oldStatus, TicketStatus.DONE, "IT-специалист оставил отчет о выполнении");
     }
 
+    /**
+     * Выполняет автоматический переход и записывает его причину.
+     *
+     * @param ticketId идентификатор заявки
+     * @param status новый статус
+     * @param reason описание сработавшего правила
+     * @throws SQLException если обновление завершилось ошибкой
+     */
     public void updateStatusAutomatically(int ticketId, TicketStatus status, String reason) throws SQLException {
         Ticket ticket = findById(ticketId);
         TicketStatus oldStatus = ticket == null ? null : ticket.getStatus();

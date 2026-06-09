@@ -1,5 +1,8 @@
 package ru.gov.servicedesk.model;
 
+/**
+ * Приоритет заявки.
+ */
 public enum Priority {
     LOW("Низкий"),
     NORMAL("Обычный"),

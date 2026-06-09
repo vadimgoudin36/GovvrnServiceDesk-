@@ -1,5 +1,8 @@
 package ru.gov.servicedesk.model;
 
+/**
+ * Неизменяемая запись журнала действий.
+ */
 public class ActionLog {
     private final int id;
     private final Integer ticketId;

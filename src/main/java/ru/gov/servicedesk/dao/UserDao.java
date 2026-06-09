@@ -12,7 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Выполняет CRUD-операции над пользователями системы.
+ */
 public class UserDao {
+    /**
+     * Ищет пользователя по уникальному логину.
+     *
+     * @param login логин пользователя
+     * @return пользователь либо пустой результат
+     * @throws SQLException если запрос завершился ошибкой
+     */
     public Optional<User> findByLogin(String login) throws SQLException {
         String sql = "SELECT id, login, password, full_name, role FROM users WHERE login = ?";
         try (Connection connection = Database.getConnection();
@@ -27,6 +37,12 @@ public class UserDao {
         }
     }
 
+    /**
+     * Возвращает всех пользователей.
+     *
+     * @return список пользователей
+     * @throws SQLException если запрос завершился ошибкой
+     */
     public List<User> findAll() throws SQLException {
         String sql = "SELECT id, login, password, full_name, role FROM users ORDER BY id";
         try (Connection connection = Database.getConnection();
@@ -40,6 +56,13 @@ public class UserDao {
         }
     }
 
+    /**
+     * Возвращает пользователей с указанной ролью.
+     *
+     * @param role требуемая роль
+     * @return список пользователей
+     * @throws SQLException если запрос завершился ошибкой
+     */
     public List<User> findByRole(Role role) throws SQLException {
         String sql = "SELECT id, login, password, full_name, role FROM users WHERE role = ? ORDER BY full_name";
         try (Connection connection = Database.getConnection();
@@ -55,6 +78,15 @@ public class UserDao {
         }
     }
 
+    /**
+     * Создает пользователя.
+     *
+     * @param login логин
+     * @param password пароль
+     * @param fullName ФИО
+     * @param role роль
+     * @throws SQLException если сохранение завершилось ошибкой
+     */
     public void create(String login, String password, String fullName, Role role) throws SQLException {
         String sql = "INSERT INTO users (login, password, full_name, role) VALUES (?, ?, ?, ?)";
         try (Connection connection = Database.getConnection();
@@ -67,6 +99,16 @@ public class UserDao {
         }
     }
 
+    /**
+     * Обновляет учетную запись пользователя.
+     *
+     * @param id идентификатор пользователя
+     * @param login новый логин
+     * @param password новый пароль
+     * @param fullName новое ФИО
+     * @param role новая роль
+     * @throws SQLException если обновление завершилось ошибкой
+     */
     public void update(int id, String login, String password, String fullName, Role role) throws SQLException {
         String sql = "UPDATE users SET login = ?, password = ?, full_name = ?, role = ? WHERE id = ?";
         try (Connection connection = Database.getConnection();

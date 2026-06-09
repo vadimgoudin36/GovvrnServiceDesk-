@@ -1,5 +1,8 @@
 package ru.gov.servicedesk.model;
 
+/**
+ * Комментарий пользователя к заявке.
+ */
 public class TicketComment {
     private final int id;
     private final int ticketId;

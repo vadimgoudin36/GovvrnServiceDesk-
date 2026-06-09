@@ -11,7 +11,21 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Работает с журналом пользовательских и автоматических действий.
+ */
 public class ActionLogDao {
+    /**
+     * Записывает действие в журнал.
+     *
+     * @param ticketId заявка, к которой относится действие
+     * @param userId пользователь; {@code null} для автоматического действия
+     * @param actionType тип действия
+     * @param oldStatus предыдущий статус
+     * @param newStatus новый статус
+     * @param description описание причины
+     * @throws SQLException если запись завершилась ошибкой
+     */
     public void log(Integer ticketId, Integer userId, String actionType, TicketStatus oldStatus, TicketStatus newStatus, String description) throws SQLException {
         String sql = """
                 INSERT INTO action_logs (ticket_id, user_id, action_type, old_status, new_status, description)
@@ -37,6 +51,13 @@ public class ActionLogDao {
         }
     }
 
+    /**
+     * Возвращает последние записи журнала.
+     *
+     * @param limit максимальное число записей
+     * @return записи от новых к старым
+     * @throws SQLException если запрос завершился ошибкой
+     */
     public List<ActionLog> findRecent(int limit) throws SQLException {
         String sql = """
                 SELECT l.id, l.ticket_id, u.full_name AS user_name, l.action_type,

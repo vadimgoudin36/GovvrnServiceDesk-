@@ -12,12 +12,20 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Загружает герб и иконки окон из ресурсов приложения.
+ */
 public final class AppIcons {
     private static final String COAT_OF_ARMS = "/icons/coat_of_arms.png";
 
     private AppIcons() {
     }
 
+    /**
+     * Возвращает иконки окна в нескольких размерах.
+     *
+     * @return список изображений для окна Swing
+     */
     public static List<Image> windowIcons() {
         List<Image> icons = new ArrayList<>();
         for (int size : List.of(16, 24, 32, 48, 64, 128, 256)) {
@@ -29,6 +37,12 @@ public final class AppIcons {
         return icons;
     }
 
+    /**
+     * Создает компонент с масштабированным гербом.
+     *
+     * @param size размер изображения в пикселях
+     * @return метка с логотипом
+     */
     public static JLabel logoLabel(int size) {
         Image image = scaledImage(size);
         JLabel label = image == null ? new JLabel() : new JLabel(new ImageIcon(image));

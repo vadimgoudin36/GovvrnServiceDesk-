@@ -1,5 +1,8 @@
 package ru.gov.servicedesk.model;
 
+/**
+ * Пользователь ServiceDesk с учетными данными и ролью доступа.
+ */
 public class User {
     private final int id;
     private final String login;
@@ -7,6 +10,15 @@ public class User {
     private final String fullName;
     private final Role role;
 
+    /**
+     * Создает объект пользователя.
+     *
+     * @param id идентификатор
+     * @param login логин
+     * @param password пароль учебной версии
+     * @param fullName полное имя
+     * @param role роль доступа
+     */
     public User(int id, String login, String password, String fullName, Role role) {
         this.id = id;
         this.login = login;

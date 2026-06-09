@@ -1,5 +1,8 @@
 package ru.gov.servicedesk.model;
 
+/**
+ * Роль пользователя и набор доступных ему функций.
+ */
 public enum Role {
     EMPLOYEE("Сотрудник"),
     SPECIALIST("IT-специалист"),

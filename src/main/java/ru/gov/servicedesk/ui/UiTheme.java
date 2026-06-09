@@ -23,6 +23,9 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Insets;
 
+/**
+ * Единая визуальная тема и фабрика оформленных Swing-компонентов.
+ */
 public final class UiTheme {
     public static final Color BACKGROUND = new Color(244, 247, 251);
     public static final Color SURFACE = Color.WHITE;
@@ -39,6 +42,11 @@ public final class UiTheme {
     private UiTheme() {
     }
 
+    /**
+     * Устанавливает Nimbus и общие шрифты и цвета приложения.
+     *
+     * @throws Exception если Look and Feel установить не удалось
+     */
     public static void install() throws Exception {
         for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
             if ("Nimbus".equals(info.getName())) {

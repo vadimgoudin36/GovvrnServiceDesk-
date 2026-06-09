@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ru.gov.servicedesk"},{"l":"ru.gov.servicedesk.dao"},{"l":"ru.gov.servicedesk.db"},{"l":"ru.gov.servicedesk.model"},{"l":"ru.gov.servicedesk.service"},{"l":"ru.gov.servicedesk.ui"}];updateSearchResults();

@@ -1,5 +1,10 @@
 package ru.gov.servicedesk.model;
 
+/**
+ * Метаданные вложения к заявке.
+ *
+ * <p>Класс подготовлен для дальнейшего расширения desktop-версии.</p>
+ */
 public class Attachment {
     private final int id;
     private final int ticketId;

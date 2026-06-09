@@ -37,6 +37,12 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Главное рабочее окно ServiceDesk.
+ *
+ * <p>Набор вкладок и команд определяется ролью текущего пользователя.
+ * Окно также периодически запускает проверку автоматических правил.</p>
+ */
 public class MainFrame extends JFrame {
     private final User currentUser;
     private final TicketDao ticketDao = new TicketDao();
@@ -53,6 +59,11 @@ public class MainFrame extends JFrame {
     private final JTextArea commentsArea = new JTextArea();
     private final JTextField commentField = new JTextField(40);
 
+    /**
+     * Создает главное окно для авторизованного пользователя.
+     *
+     * @param currentUser текущий пользователь
+     */
     public MainFrame(User currentUser) {
         super("ServiceDesk МРБ Воронежской области - " + currentUser.getRole().getTitle());
         this.currentUser = currentUser;

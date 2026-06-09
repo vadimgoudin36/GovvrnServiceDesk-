@@ -8,7 +8,18 @@ import ru.gov.servicedesk.ui.UiTheme;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
+/**
+ * Точка входа desktop-приложения ServiceDesk.
+ *
+ * <p>Устанавливает визуальную тему, инициализирует SQLite, применяет
+ * автоматические правила и открывает окно авторизации.</p>
+ */
 public class App {
+    /**
+     * Запускает приложение в потоке обработки событий Swing.
+     *
+     * @param args аргументы командной строки; приложением не используются
+     */
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             try {

@@ -88,3 +88,16 @@ servicedesk.db
 - `OVERDUE` - просрочена;
 - `URGENT_REVIEW` - требует срочного рассмотрения;
 - `ESCALATION` - требует эскалации.
+
+## JavaDoc
+
+HTML-документация классов, методов и пакетов проекта находится в каталоге
+[`docs/javadoc`](docs/javadoc/index.html).
+
+Чтобы пересоздать документацию, выполните из корня проекта:
+
+```cmd
+"C:\Program Files\Apache\apache-maven-3.9.16\bin\mvn.cmd" -DskipTests javadoc:javadoc
+```
+
+Maven сохранит результат в `target\reports\apidocs`.

@@ -1,5 +1,11 @@
 package ru.gov.servicedesk.model;
 
+/**
+ * Заявка на IT-поддержку.
+ *
+ * <p>Содержит описание проблемы, статус, автора, исполнителя, сроки и
+ * отчет о выполнении.</p>
+ */
 public class Ticket {
     private int id;
     private String title;

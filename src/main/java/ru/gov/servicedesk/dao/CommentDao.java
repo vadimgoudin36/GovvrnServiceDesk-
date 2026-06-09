@@ -11,7 +11,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Сохраняет и анализирует комментарии к заявкам.
+ */
 public class CommentDao {
+    /**
+     * Добавляет комментарий к заявке.
+     *
+     * @param ticketId идентификатор заявки
+     * @param authorId идентификатор автора
+     * @param text текст комментария
+     * @throws SQLException если сохранение завершилось ошибкой
+     */
     public void create(int ticketId, int authorId, String text) throws SQLException {
         String sql = "INSERT INTO comments (ticket_id, author_id, text) VALUES (?, ?, ?)";
         try (Connection connection = Database.getConnection();
@@ -23,6 +34,13 @@ public class CommentDao {
         }
     }
 
+    /**
+     * Возвращает комментарии заявки в хронологическом порядке.
+     *
+     * @param ticketId идентификатор заявки
+     * @return список комментариев
+     * @throws SQLException если запрос завершился ошибкой
+     */
     public List<TicketComment> findByTicket(int ticketId) throws SQLException {
         String sql = """
                 SELECT c.id, c.ticket_id, u.full_name AS author_name, c.text, c.created_at
@@ -50,6 +68,13 @@ public class CommentDao {
         }
     }
 
+    /**
+     * Подсчитывает комментарии заявки.
+     *
+     * @param ticketId идентификатор заявки
+     * @return количество комментариев
+     * @throws SQLException если запрос завершился ошибкой
+     */
     public int countByTicket(int ticketId) throws SQLException {
         String sql = "SELECT COUNT(*) AS total FROM comments WHERE ticket_id = ?";
         try (Connection connection = Database.getConnection();
@@ -61,6 +86,15 @@ public class CommentDao {
         }
     }
 
+    /**
+     * Проверяет наличие комментария указанной роли с одним из ключевых слов.
+     *
+     * @param ticketId идентификатор заявки
+     * @param role роль автора
+     * @param words ключевые слова
+     * @return {@code true}, если подходящий комментарий найден
+     * @throws SQLException если запрос завершился ошибкой
+     */
     public boolean hasCommentByRoleContaining(int ticketId, Role role, String... words) throws SQLException {
         String sql = """
                 SELECT c.text
@@ -83,6 +117,15 @@ public class CommentDao {
         }
     }
 
+    /**
+     * Проверяет наличие комментария автора с одним из ключевых слов.
+     *
+     * @param ticketId идентификатор заявки
+     * @param authorId идентификатор автора
+     * @param words ключевые слова
+     * @return {@code true}, если подходящий комментарий найден
+     * @throws SQLException если запрос завершился ошибкой
+     */
     public boolean hasCommentByAuthorContaining(int ticketId, int authorId, String... words) throws SQLException {
         String sql = "SELECT text FROM comments WHERE ticket_id = ? AND author_id = ?";
         try (Connection connection = Database.getConnection();

@@ -12,18 +12,35 @@ import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Применяет правила автоматического изменения статуса заявки FR-05.
+ *
+ * <p>Поддерживаются SLA-просрочка, определение срочности по тексту,
+ * эскалация после трех комментариев и автозакрытие по комментариям.</p>
+ */
 public class RuleEngineService {
     private static final DateTimeFormatter SQLITE_DATE_TIME = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     private final TicketDao ticketDao = new TicketDao();
     private final CommentDao commentDao = new CommentDao();
 
+    /**
+     * Проверяет правила для всех заявок системы.
+     *
+     * @throws SQLException если чтение или обновление данных завершилось ошибкой
+     */
     public void applyAutomaticRules() throws SQLException {
         for (Ticket ticket : ticketDao.findAll()) {
             applyAutomaticRulesForTicket(ticket.getId());
         }
     }
 
+    /**
+     * Проверяет правила для одной заявки.
+     *
+     * @param ticketId идентификатор заявки
+     * @throws SQLException если чтение или обновление данных завершилось ошибкой
+     */
     public void applyAutomaticRulesForTicket(int ticketId) throws SQLException {
         Ticket ticket = ticketDao.findById(ticketId);
         if (ticket == null || ticket.getStatus() == TicketStatus.CLOSED) {

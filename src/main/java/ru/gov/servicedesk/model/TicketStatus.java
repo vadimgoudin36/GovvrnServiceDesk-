@@ -1,5 +1,8 @@
 package ru.gov.servicedesk.model;
 
+/**
+ * Состояние заявки в основном и автоматическом жизненном цикле.
+ */
 public enum TicketStatus {
     NEW("Новая"),
     IN_PROGRESS("В работе"),

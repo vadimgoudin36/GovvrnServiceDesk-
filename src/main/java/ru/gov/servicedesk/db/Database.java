@@ -8,6 +8,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+/**
+ * Управляет подключениями к SQLite и первоначальной структурой базы данных.
+ *
+ * <p>При первом запуске создает таблицы, категории и тестовых пользователей.</p>
+ */
 public final class Database {
     private static final Path DB_PATH = appDataDirectory().resolve("servicedesk.db");
     private static final String DB_URL = "jdbc:sqlite:" + DB_PATH;
@@ -15,6 +20,12 @@ public final class Database {
     private Database() {
     }
 
+    /**
+     * Открывает соединение с базой данных и включает внешние ключи SQLite.
+     *
+     * @return открытое JDBC-соединение
+     * @throws SQLException если каталог или соединение создать не удалось
+     */
     public static Connection getConnection() throws SQLException {
         ensureDatabaseDirectory();
         Connection connection = DriverManager.getConnection(DB_URL);
@@ -24,6 +35,11 @@ public final class Database {
         return connection;
     }
 
+    /**
+     * Создает отсутствующие таблицы и добавляет начальные данные.
+     *
+     * @throws SQLException если выполнение SQL-команд завершилось ошибкой
+     */
     public static void initialize() throws SQLException {
         try (Connection connection = getConnection(); Statement statement = connection.createStatement()) {
             createTables(statement);

@@ -76,6 +76,28 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.11.2</version>
+                <configuration>
+                    <doclint>none</doclint>
+                    <encoding>UTF-8</encoding>
+                    <docencoding>UTF-8</docencoding>
+                    <charset>UTF-8</charset>
+                    <windowtitle>ServiceDesk API</windowtitle>
+                    <doctitle>ServiceDesk: документация Java API</doctitle>
+                    <disableSourcepathUsage>true</disableSourcepathUsage>
+                    <sourceFileExcludes>
+                        <sourceFileExclude>ru/gov/servicedesk/WebApplication.java</sourceFileExclude>
+                        <sourceFileExclude>ru/gov/servicedesk/config/**/*.java</sourceFileExclude>
+                        <sourceFileExclude>ru/gov/servicedesk/controller/**/*.java</sourceFileExclude>
+                        <sourceFileExclude>ru/gov/servicedesk/repository/**/*.java</sourceFileExclude>
+                        <sourceFileExclude>ru/gov/servicedesk/service/AttachmentStorageService.java</sourceFileExclude>
+                        <sourceFileExclude>ru/gov/servicedesk/service/WebCurrentUserService.java</sourceFileExclude>
+                    </sourceFileExcludes>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>

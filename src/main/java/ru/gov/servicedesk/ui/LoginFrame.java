@@ -18,11 +18,19 @@ import java.awt.Insets;
 import java.sql.SQLException;
 import java.util.Optional;
 
+/**
+ * Полноэкранное окно авторизации.
+ *
+ * <p>После успешной проверки учетных данных открывает {@link MainFrame}.</p>
+ */
 public class LoginFrame extends JFrame {
     private final AuthService authService = new AuthService();
     private final JTextField loginField = new JTextField(22);
     private final JPasswordField passwordField = new JPasswordField(22);
 
+    /**
+     * Создает и настраивает окно входа.
+     */
     public LoginFrame() {
         super("Авторизация - ServiceDesk");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
