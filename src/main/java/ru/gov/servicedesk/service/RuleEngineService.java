@@ -21,8 +21,28 @@ import java.time.format.DateTimeParseException;
 public class RuleEngineService {
     private static final DateTimeFormatter SQLITE_DATE_TIME = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-    private final TicketDao ticketDao = new TicketDao();
-    private final CommentDao commentDao = new CommentDao();
+    private final TicketDao ticketDao;
+    private final CommentDao commentDao;
+
+    /**
+     * Создает обработчик правил со стандартными DAO приложения.
+     */
+    public RuleEngineService() {
+        this(new TicketDao(), new CommentDao());
+    }
+
+    /**
+     * Создает обработчик правил с заданными источниками данных.
+     *
+     * <p>Конструктор используется для изолированного unit-тестирования.</p>
+     *
+     * @param ticketDao источник и хранилище заявок
+     * @param commentDao источник комментариев
+     */
+    RuleEngineService(TicketDao ticketDao, CommentDao commentDao) {
+        this.ticketDao = ticketDao;
+        this.commentDao = commentDao;
+    }
 
     /**
      * Проверяет правила для всех заявок системы.

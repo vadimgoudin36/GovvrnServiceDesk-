@@ -12,7 +12,25 @@ import java.util.Optional;
  * <p>Хранение пароля открытым текстом используется только в учебной версии.</p>
  */
 public class AuthService {
-    private final UserDao userDao = new UserDao();
+    private final UserDao userDao;
+
+    /**
+     * Создает сервис, использующий стандартный DAO пользователей.
+     */
+    public AuthService() {
+        this(new UserDao());
+    }
+
+    /**
+     * Создает сервис с заданным DAO.
+     *
+     * <p>Конструктор используется для изолированного unit-тестирования.</p>
+     *
+     * @param userDao источник данных пользователей
+     */
+    AuthService(UserDao userDao) {
+        this.userDao = userDao;
+    }
 
     /**
      * Проверяет учетные данные пользователя.
